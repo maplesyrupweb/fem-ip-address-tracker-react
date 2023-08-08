@@ -1,38 +1,258 @@
-.App {
+
+
+.hero {
+  background-image: url('./images/pattern-bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 28rem;
+  z-index: -1;
+}
+
+.main-header {
   text-align: center;
+  color: hsl(0, 0%, 100%);
+  font-weight: 500;
+  font-size: 3.2rem;
+  margin-bottom: 2rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+.search__box {
+  margin: 0 auto;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+  max-width: 56rem;
+  width: 100%;
+  height: 6rem;
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 1rem;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+.search__form {
+  width: 100%;
+  margin: 2rem 0 2rem 2rem;
+}
+
+.search__input {
+  width: 100%;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.search__input::placeholder {
+  color: hsl(0, 0%, 59%);
+}
+
+.search__input:focus {
+  outline: none;
+}
+
+.search__input:focus::placeholder {
+  color: transparent;
+}
+
+.btn__submit {
+  flex-shrink: 0;
+  width: 6rem;
+  background-color: #000;
+  height: 6rem;
+  border: none;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  color: #fff;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.btn__submit:active {
+  background-color: hsl(0, 0%, 17%);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.search__wrapper {
+  position: relative;
+  margin: 0 auto;
+
+  max-width: 56rem;
+  width: 100%;
+  height: 6rem;
+}
+
+.error {
+  position: absolute;
+  bottom: -5rem;
+  left: 50%;
+  width: fit-content;
+  background-color: #ffbaba;
+  color: #d8000c;
+  padding: 1rem;
+  transform: translateX(-50%);
+
+  clip-path: polygon(
+    48% 10%,
+    49% 0,
+    50% 10%,
+    100% 10%,
+    100% 100%,
+    0 100%,
+    0 10%
+  );
+  z-index: 2;
+}
+
+.results {
+  margin: 0 auto;
+  margin-top: 5rem;
+  padding: 4rem 3rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  max-width: 111rem;
+
+  min-width: 111rem;
+  width: fit-content;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3.5rem;
+}
+
+.results__content {
+  width: 100%;
+  padding-right: 3.5rem;
+  position: relative;
+}
+
+.results__content:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 1rem;
+  right: 0;
+
+  width: 1px;
+  height: calc(100% - 10px);
+
+  background-color: hsl(0, 0%, 59%);
+}
+
+.results__header {
+  text-transform: uppercase;
+  color: hsl(0, 0%, 59%);
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  margin-bottom: 1.2rem;
+}
+
+.result__data {
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+main {
+  position: absolute;
+  top: 28rem;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 280px);
+  z-index: -1;
+  background-color: #5f85f1;
+}
+
+@media screen and (max-width: 1150px) {
+  .results {
+    grid-template-columns: repeat(3, 1fr);
+    min-width: calc(100vw - 4rem);
   }
-  to {
-    transform: rotate(360deg);
+
+  .results__content:last-child {
+    text-align: center;
+    grid-column: 1 / -1;
+  }
+
+  .results__content:nth-child(3)::after {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  main {
+    height: 100vh;
+  }
+
+  .results {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .results__content:last-child {
+    text-align: left;
+    grid-column: 2 / -1;
+  }
+
+  .results__content:nth-child(3)::after {
+    display: block;
+  }
+
+  .results__content:nth-child(2)::after {
+    display: none;
+  }
+
+  .result__data {
+    font-size: 2rem;
+  }
+
+  .results__header {
+    margin-bottom: 0.6rem;
+  }
+
+  .search__input::placeholder {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .main-header {
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+  }
+
+  .results {
+    margin-top: 3rem;
+    grid-template-columns: none;
+    gap: 2rem;
+    padding: 2.5rem;
+  }
+
+  .results__content {
+    text-align: center;
+  }
+
+  .results__content:last-child {
+    text-align: center;
+  }
+
+  .results__content::after {
+    display: none;
+  }
+
+  .results__content:nth-child(3)::after {
+    display: none;
+  }
+
+  .result__data {
+    font-size: 1.8rem;
+  }
+  .results__header {
+    font-size: 1rem;
+  }
+
+  .error {
+    bottom: -7rem;
   }
 }
