@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import IPTrackerContext from '../../contexts/ip-info';
+import IPTrackerContext from '../../contexts/ip-tracker-context';
 
 import Spinner from '../display-spinner/DisplaySpinner';
 

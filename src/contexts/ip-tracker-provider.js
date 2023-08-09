@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import IPTrackerContext from './ip-info';
+import IPTrackerContext from './ip-tracker-context';
 
 const IPAPIContextProvider = (props) => {
   const [trackerData, setTrackerData] = useState({

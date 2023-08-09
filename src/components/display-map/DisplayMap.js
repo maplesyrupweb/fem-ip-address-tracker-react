@@ -9,14 +9,14 @@ import {
   ZoomControl,
 } from 'react-leaflet';
 
-import IPTrackerContext from '../../contexts/ip-info';
+import IPTrackerContext from '../../contexts/ip-tracker-context';
 
-import iconmonstrlocation from '../../images/iconmonstrlocation.png';
+import inconSvg from '../../images/icon-location.svg';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const markerIcon = new L.Icon({
-  iconUrl: iconmonstrlocation,
+  iconUrl: inconSvg,
   iconSize: [47, 45],
   iconAnchor: [17, 45],
   popupAnchor: [0, -46],
@@ -52,7 +52,9 @@ const DisplayMap = () => {
         
         <Marker position={position} icon={markerIcon}>
         {/* add popup info later */}
-          <Popup></Popup>
+          <Popup>
+            <p>Hello World</p>
+          </Popup>
         </Marker>
       </MapContainer>
     </main>

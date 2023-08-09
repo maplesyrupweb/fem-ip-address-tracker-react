@@ -1,8 +1,10 @@
 import React, { useState, useContext } from 'react';
 import '../../App.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import IPTrackerContext from '../../contexts/ip-info';
+
+import IPTrackerContext from '../../contexts/ip-tracker-context';
+
+import iconArrow from '../../images/icon-arrow.svg';
+
 
 const DisplaySearch = () => {
   const [inputText, setInputText] = useState('');
@@ -38,7 +40,8 @@ const DisplaySearch = () => {
           onClick={submitHandler}
           aria-label="submit"
         >
-          <FontAwesomeIcon icon={faChevronRight} className="chevron" />
+          <img src={iconArrow}className="chevron" alt="arrow" />
+          
         </button>
       </div>
     </section>

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 // import reportWebVitals from './reportWebVitals';
-import IPAPIContextProvider from './contexts/ip-api';
+import IPAPIContextProvider from './contexts/ip-tracker-provider';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
