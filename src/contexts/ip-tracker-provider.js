@@ -21,25 +21,41 @@ const IPAPIContextProvider = (props) => {
     let url;
 
     if (ip) {
-      url = `https://geo.ipify.org/api/v1?apiKey=at_kK7qCqlfzRbeZQKVXdhs7e6gIrx5b&ipAddress=${ip}&domain=${ip}`;
+
+      // 185.219.141.238
+      //176.100.43.105
+      url = `https://ipapi.co/${ip}/json`;
     } else {
-      url = `https://geo.ipify.org/api/v1?apiKey=at_kK7qCqlfzRbeZQKVXdhs7e6gIrx5b`;
+      
+      url = `https://ipapi.co/json/`;
+      console.log(url);
+      
+
     }
     const fetchData = async () => {
       const res = await fetch(url);
 
       if (!res.ok) {
+        console.log("!res.ok");
         throw new Error(res.status);
       }
 
       const resData = await res.json();
-
+      console.log("set tracking data");
+      console.log(resData.ip);
+      console.log(resData.city);
+      console.log(resData.region);
+      console.log(resData.utc_offset);
+      console.log(resData.org);
+      console.log(resData.latitude);
+      console.log(resData.longitude);
+      
       setTrackerData({
         ipAddress: resData.ip,
-        city: `${resData.location.region}, ${resData.location.city}`,
-        timeZone: `UTC ${resData.location.timezone}`,
-        isp: resData.isp,
-        location: [resData.location.lat, resData.location.lng],
+        city: `${resData.city}, ${resData.region}`,
+        timeZone: `UTC ${resData.timezone}`,
+        isp: resData.org,
+        location: [resData.latitude, resData.longitude],
         error: false,
         isLoading: false,
       });
@@ -48,6 +64,7 @@ const IPAPIContextProvider = (props) => {
     try {
       await fetchData();
     } catch (error) {
+      console.log("error");
       setTrackerData((prevState) => {
         return { ...prevState, error: true };
       });
